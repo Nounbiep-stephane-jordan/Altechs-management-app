@@ -53,13 +53,9 @@ class ClientCategoryController extends Controller
      * @param  \App\Models\ClientCategory  $clientCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(ClientCategory $clientCategory,$id)
+    public function show(ClientCategory $clientCategory )
     {
-        $client_cat = ClientCategory::find($id);
-        return response()->json([
-            'status' => 200,
-            'client' => $client_cat,
-        ]);
+ 
     }
 
     /**
@@ -68,9 +64,13 @@ class ClientCategoryController extends Controller
      * @param  \App\Models\ClientCategory  $clientCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClientCategory $clientCategory)
+    public function edit(ClientCategory $clientCategory,$id)
     {
-        //
+        $client_cat = ClientCategory::find($id);
+        return response()->json([
+            'status' => 200,
+            'client' => $client_cat,
+        ]);
     }
 
     /**
