@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\http\controllers\ClientController;
 use App\http\controllers\ClientCategoryController;
 use App\http\controllers\InternController;
+use App\http\controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,10 @@ Route::post('/intern_store', [InternController::class,'store']);  //store
 Route::get('/intern_edit/{id}', [InternController::class,'edit']); //get edit
 Route::put('/intern_update/{id}', [InternController::class,'update']); //update
 Route::delete('/intern_delete/{id}',[InternController::class,'delete']);  //delete
+
+//for employee
+Route::get('/employee', [EmployeeController::class,'index']);  //get all
+Route::post('/employee_store', [EmployeeController::class,'store']);  //store
+Route::get('/employee_edit/{id}', [EmployeeController::class,'edit']); //get edit
+Route::put('/employee_update/{id}', [EmployeeController::class,'update']); //update
+Route::delete('/employee_delete/{id}',[EmployeeController::class,'delete']);  //delete
