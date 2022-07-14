@@ -15,6 +15,15 @@ class Employee extends Model
         'email',
         'age',
         'sex',
-        'tel'
+        'tel',
+        'join_date'
     ];
+
+    public function intern(){
+        return $this->hasMany(Intern::class,'supervisor_name','id');
+    }
+
+    public function roles(){
+        return $this-> belongsToMany(Role::class,'role_employee');
+    }
 }

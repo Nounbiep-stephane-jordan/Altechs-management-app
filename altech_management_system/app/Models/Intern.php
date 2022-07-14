@@ -19,6 +19,11 @@ class Intern extends Model
         'sex',
         'address',
         'start_date',
-        'end_date'
+        'end_date',
+        'supervisor_name'
     ];
+
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }

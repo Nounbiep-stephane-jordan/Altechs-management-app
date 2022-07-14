@@ -39,13 +39,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $employee = new Client;
+        $employee = new Employee;
         $employee->name= $request->input('name');
         $employee->address= $request->input('address');
         $employee->tel= $request->input('tel');
         $employee->email= $request->input('email');
         $employee->age= $request->input('age');
         $employee->sex= $request->input('sex');
+        $employee->join_date= $request->input('join_date');
 
         $employee->save();
 
@@ -97,6 +98,8 @@ class EmployeeController extends Controller
         $employee->email= $request->input('email');
         $employee->age= $request->input('age');
         $employee->sex= $request->input('sex');
+        $employee->join_date= $request->input('join_date');
+
 
         $employee->update();
 

@@ -25,6 +25,8 @@ class CreateInternsTable extends Migration
             $table->string('address');
             $table->string('start_date');
             $table->string('end_date');
+            $table->string('supervisor_name');
+            // $table->foreignId('supervisor_name')->constrained('employees');
             $table->timestamps();
         });
     }

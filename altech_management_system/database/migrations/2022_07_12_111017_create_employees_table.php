@@ -21,6 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->string('age');
             $table->string('sex');
             $table->string('tel');
+            $table->string('join_date');
             $table->timestamps();
         });
     }
