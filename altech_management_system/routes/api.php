@@ -8,6 +8,7 @@ use App\http\controllers\InternController;
 use App\http\controllers\EmployeeController;
 use App\http\controllers\VendorController;
 use App\http\controllers\VendorCategoryController;
+use App\http\controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,3 +64,10 @@ Route::post('/employee_store', [EmployeeController::class,'store']);  //store
 Route::get('/employee_edit/{id}', [EmployeeController::class,'edit']); //get edit
 Route::put('/employee_update/{id}', [EmployeeController::class,'update']); //update
 Route::delete('/employee_delete/{id}',[EmployeeController::class,'delete']);  //delete
+
+//for role
+Route::get('/role', [RoleController::class,'index']);  //get all
+Route::post('/role_add', [RoleController::class,'store']);  //store
+Route::get('/role_edit/{id}', [RoleController::class,'edit']); //get edit
+Route::put('/role_update/{id}', [RoleController::class,'update']); //update
+Route::delete('/role_delete/{id}',[RoleController::class,'delete']);  //delete
