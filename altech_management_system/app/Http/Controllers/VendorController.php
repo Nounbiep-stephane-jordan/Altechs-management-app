@@ -35,7 +35,25 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vendor = new Vendor;
+        $vendor->name= $request->input('name');
+        $vendor->address= $request->input('address');
+        $vendor->tel= $request->input('tel');
+        $vendor->email= $request->input('email');
+        $vendor->website= $request->input('website');
+        $vendor->category_name= $request->input('category_name');
+        $vendor->save();
+
+        $vendor_category = new VendorCategory;
+        $vendor_category -> vendor_id = $vendor -> id;
+        $vendor_category -> category_name = $vendor -> category_name;
+        $vendor_category -> activity_sector = 'null';
+        $vendor_category->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'vendor added sucessfully'
+        ]);
     }
 
     /**
@@ -55,9 +73,13 @@ class VendorController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendor $vendor)
+    public function edit(Vendor $vendor,$id)
     {
-        //
+        $vendor = Vendor::find($id);
+        return response()->json([
+            'status' => 200,
+            'vendor' => $vendor,
+        ]);
     }
 
     /**
@@ -67,11 +89,35 @@ class VendorController extends Controller
      * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendor $vendor)
+    public function update(Request $request, Vendor $vendor,$id)
     {
-        //
+        $vendor = Vendor::find($id);
+        $vendor->name= $request->input('name');
+        $vendor->address= $request->input('address');
+        $vendor->tel= $request->input('tel');
+        $vendor->email= $request->input('email');
+        $vendor->website= $request->input('website');
+        // $client->category_name= $request->input('category_name');
+        $vendor->update();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'vendor updated sucessfully',
+            'vendor' => $vendor
+
+        ]);
     }
 
+    public function delete(Request $request,$id)
+    {
+        Vendor::destroy($id);
+        return response()->json([
+            'status' =>  200,
+            'message' => "vendor deleted sucessfully"
+        ]);
+
+ 
+    }
     /**
      * Remove the specified resource from storage.
      *

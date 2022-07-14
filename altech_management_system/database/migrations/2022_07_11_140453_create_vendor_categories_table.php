@@ -15,6 +15,9 @@ class CreateVendorCategoriesTable extends Migration
     {
         Schema::create('vendor_categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId ('vendor_id') -> constrained();
+            $table->string('category_name');
+            $table->string('activity_sector');
             $table->timestamps();
         });
     }

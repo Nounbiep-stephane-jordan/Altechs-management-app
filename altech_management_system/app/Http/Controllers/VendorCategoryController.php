@@ -35,7 +35,16 @@ class VendorCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vendor_category = new VendorCategory;
+        $vendor_category->vendor_id= $request->input('vendor_id');
+        $vendor_category->category_name= $request->input('category_name');
+        $vendor_category->activity_sector= $request->input('activity_sector');
+        $vendor_category->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'vendor added sucessfully'
+        ]);
     }
 
     /**
@@ -55,11 +64,25 @@ class VendorCategoryController extends Controller
      * @param  \App\Models\VendorCategory  $vendorCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(VendorCategory $vendorCategory)
+    public function edit(VendorCategory $vendorCategory,$id)
     {
-        //
+        $vendor_category = VendorCategory::find($id);
+        return response()->json([
+            'status' => 200,
+            'vendor_category' => $vendor_category,
+        ]);
     }
 
+    public function delete(Request $request,$id)
+    {
+        VendorCategory::destroy($id);
+        return response()->json([
+            'status' =>  200,
+            'message' => "vendor_category deleted sucessfully"
+        ]);
+
+ 
+    }
     /**
      * Update the specified resource in storage.
      *
