@@ -14,7 +14,11 @@ class VendorCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $vendor =  VendorCategory::all();
+        return response()->json([
+            'status' =>  200,
+            'vendors_category' => $vendor
+        ]);
     }
 
     /**
@@ -35,16 +39,17 @@ class VendorCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $vendor_category = new VendorCategory;
-        $vendor_category->vendor_id= $request->input('vendor_id');
+       
+        $vendor_category = new  VendorCategory;
         $vendor_category->category_name= $request->input('category_name');
+        // $vendor_category->category_id= $request->input('category_id');
         $vendor_category->activity_sector= $request->input('activity_sector');
         $vendor_category->save();
 
-        return response()->json([
-            'status' => 200,
-            'message' => 'vendor added sucessfully'
-        ]);
+            return response()->json([
+                'status' => 200,
+                'message' => 'vendor category added sucessfully'
+            ]);
     }
 
     /**

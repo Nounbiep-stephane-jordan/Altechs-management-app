@@ -50,7 +50,8 @@ class InternController extends Controller
         $intern->address= $request->input('address');
         $intern->start_date= $request->input('start_date');
         $intern->end_date= $request->input('end_date');
-        $intern->supervisor_name= $request->input('supervisor_name');
+        $intern->supervisor_name= $request->input('supervisor_name'); 
+        $intern->supervisor_id= $request->input('supervisor_id'); 
         $intern->save();
 
         return response()->json([
@@ -106,6 +107,8 @@ class InternController extends Controller
         $intern->address= $request->input('address');
         $intern->start_date= $request->input('start_date');
         $intern->end_date= $request->input('end_date');
+        $intern->supervisor_id= $request->input('supervisor_id'); 
+
         $intern->update();
 
         return response()->json([

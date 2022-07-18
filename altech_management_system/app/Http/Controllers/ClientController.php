@@ -16,6 +16,7 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
+        // $clients = Client::with('clientcategories')->get();
         return response()->json([
             'status' =>  200,
             'clients' => $clients
@@ -48,14 +49,14 @@ class ClientController extends Controller
         $client->email= $request->input('email');
         $client->website= $request->input('website');
         $client->category_name= $request->input('category_name');
+        $client->category_id= $request->input('category_id');
         $client->save();
 
-        $client_category = new  ClientCategory;
-        $client_category->client_id=$client->id;
-        $client_category->category_name=$client->category_name;
-        $client_category->activity_sector='null';
+        // $client_category = new  ClientCategory;
+        // $client_category->category_name=$client->category_name;
+        // $client_category->activity_sector='null';
        
-        $client_category->save();
+        // $client_category->save();
 
         return response()->json([
             'status' => 200,
@@ -103,7 +104,9 @@ class ClientController extends Controller
         $client->address= $request->input('address');
         $client->tel= $request->input('tel');
         $client->email= $request->input('email');
-        $client->website= $request->input('website');
+        $client->website= $request->input('website'); 
+        $client->category_id= $request->input('category_id');
+
         // $client->category_name= $request->input('category_name');
         $client->update();
 

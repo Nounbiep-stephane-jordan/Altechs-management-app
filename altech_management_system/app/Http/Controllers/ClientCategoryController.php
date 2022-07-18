@@ -14,7 +14,11 @@ class ClientCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $clients = ClientCategory::all();
+        return response()->json([
+            'status' =>  200,
+            'clients_cat' => $clients
+        ]);
     }
 
     /**
@@ -36,7 +40,7 @@ class ClientCategoryController extends Controller
     public function store(Request $request)
     {
         $client_category = new ClientCategory ;
-        $client_category->client_id=$request->input('client_id');
+        // $client_category->client_id=$request->input('client_id');
         $client_category->category_name=$request->input('category_name');
         $client_category->activity_sector=$request->input('activity_sector');
         $client_category->save();

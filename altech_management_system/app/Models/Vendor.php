@@ -15,10 +15,12 @@ class Vendor extends Model
         'address',
         'tel',
         'email',
-        'website'
+        'website',
+        'category_id'
     ];
+    protected $with = ['vendorcategories'];
 
     public function vendorcategories() {
-        return $this->belongsTo(VendorCategory::class,'vendor_id');
+        return $this->belongsTo(VendorCategory::class,'category_id','id');
     }
 }

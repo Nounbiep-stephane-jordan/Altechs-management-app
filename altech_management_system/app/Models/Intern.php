@@ -20,9 +20,11 @@ class Intern extends Model
         'address',
         'start_date',
         'end_date',
-        'supervisor_name'
+        'supervisor_name','supervisor_id'
     ];
 
+    protected $with = ['employee'];
+    
     public function employee(){
         return $this->belongsTo(Employee::class);
     }

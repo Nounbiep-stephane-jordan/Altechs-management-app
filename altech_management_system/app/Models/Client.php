@@ -15,10 +15,12 @@ class Client extends Model
         'tel',
         'email',
         'website',
-        'category_name' 
+        'category_name' ,
+        'category_id'
     ];
 
-    public function clientcategories() {
-        return $this->belongsTo(ClientCategory::class,'client_id');
-    }
+    // protected $with = ['clientcategories'];
+    // public function clientcategories() {
+    //     return $this->belongsTo(ClientCategory::class,'category_id','id');
+    // }
 }

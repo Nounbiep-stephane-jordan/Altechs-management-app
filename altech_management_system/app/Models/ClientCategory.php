@@ -10,13 +10,13 @@ class ClientCategory extends Model
     use HasFactory;
     protected $table = 'client_categories';
     protected $fillable = [
-        'client_id',
         'category_name',
         'activity_sector'
     ];
+    protected $with = ['client'];
 
     public function client() {
-        return $this->hasMany(Client::class,'category_name','category_name');
+        return $this->hasMany(Client::class,'category_id','id');
     }
 
 }

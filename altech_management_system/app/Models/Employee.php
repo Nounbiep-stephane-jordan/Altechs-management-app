@@ -16,14 +16,16 @@ class Employee extends Model
         'age',
         'sex',
         'tel',
-        'join_date'
+        'join_date' ,
     ];
 
+    protected $with = ['intern','roles'];
+
     public function intern(){
-        return $this->hasMany(Intern::class,'supervisor_name','id');
+        return $this->hasMany(Intern::class,'supervisor_id','id');
     }
 
     public function roles(){
-        return $this-> belongsToMany(Role::class,'role_employee');
+        return $this-> belongsToMany(Role::class,'employee__role');
     }
 }

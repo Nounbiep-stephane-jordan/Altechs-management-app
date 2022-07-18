@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vendor;
+use App\Models\VendorCategory;
 use Illuminate\Http\Request;
 
 class VendorController extends Controller
@@ -14,7 +15,11 @@ class VendorController extends Controller
      */
     public function index()
     {
-        //
+        $vendor =  Vendor::all();
+        return response()->json([
+            'status' =>  200,
+            'vendors' => $vendor
+        ]);
     }
 
     /**
@@ -42,13 +47,14 @@ class VendorController extends Controller
         $vendor->email= $request->input('email');
         $vendor->website= $request->input('website');
         $vendor->category_name= $request->input('category_name');
+        $vendor->category_id= $request->input('category_id'); 
+ 
         $vendor->save();
 
-        $vendor_category = new VendorCategory;
-        $vendor_category -> vendor_id = $vendor -> id;
-        $vendor_category -> category_name = $vendor -> category_name;
-        $vendor_category -> activity_sector = 'null';
-        $vendor_category->save();
+        // $vendor_category = new VendorCategory;
+        // $vendor_category -> category_name = $vendor -> category_name;
+        // $vendor_category -> activity_sector = 'null';
+        // $vendor_category->save();
 
         return response()->json([
             'status' => 200,
@@ -97,7 +103,9 @@ class VendorController extends Controller
         $vendor->tel= $request->input('tel');
         $vendor->email= $request->input('email');
         $vendor->website= $request->input('website');
-        // $client->category_name= $request->input('category_name');
+        $vendor->category_id= $request->input('category_id');
+        $client->category_name= $request->input('category_name');
+ 
         $vendor->update();
 
         return response()->json([
@@ -110,6 +118,7 @@ class VendorController extends Controller
 
     public function delete(Request $request,$id)
     {
+        VendorCategory::destroy($id);
         Vendor::destroy($id);
         return response()->json([
             'status' =>  200,
