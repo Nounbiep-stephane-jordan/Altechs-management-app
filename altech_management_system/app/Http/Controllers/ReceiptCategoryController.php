@@ -35,7 +35,15 @@ class ReceiptCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $receipt_cat = new  ReceiptCategory;
+        $receipt_cat->services= $request->input('services');
+        $receipt_cat->materials= $request->input('materials');
+        $receipt_cat->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'receipt category added sucessfully'
+        ]);
     }
 
     /**
@@ -55,9 +63,13 @@ class ReceiptCategoryController extends Controller
      * @param  \App\Models\ReceiptCategory  $receiptCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceiptCategory $receiptCategory)
+    public function edit(ReceiptCategory $receiptCategory,$id)
     {
-        //
+        $receipt_cat =   ReceiptCategory::find($id);
+        return response()->json([
+            'status' => 200,
+            'role' => $receipcat,
+        ]);
     }
 
     /**
@@ -67,11 +79,29 @@ class ReceiptCategoryController extends Controller
      * @param  \App\Models\ReceiptCategory  $receiptCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceiptCategory $receiptCategory)
+    public function update(Request $request, ReceiptCategory $receiptCategory,$id)
     {
-        //
+        $receipt_cat =   ReceiptCategory::find($id);
+        $receipt_cat->services= $request->input('services');
+        $receipt_cat->materials= $request->input('materials');
+        $receipt_cat->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'receipt category added sucessfully'
+        ]);
     }
 
+    public function delete(Request $request,$id)
+    {
+        ReceiptCategory::destroy($id);
+        return response()->json([
+            'status' =>  200,
+            'message' => "receipt deleted sucessfully"
+        ]);
+
+ 
+    }
     /**
      * Remove the specified resource from storage.
      *

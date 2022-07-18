@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ReceiptCategory extends Model
+class Role_Employee extends Model
 {
     use HasFactory;
-    protected $table = 'receips';
+    protected $table = 'role__employees';
     protected $fillable = [
-     'services'.
-    'materials'];
+     'role_id'.
+    'employee_id'];
 }

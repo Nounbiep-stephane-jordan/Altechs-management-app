@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReceiptCategoriesTable extends Migration
+class CreateRoleEmployeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateReceiptCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('receipt_categories', function (Blueprint $table) {
+        Schema::create('role__employees', function (Blueprint $table) {
             $table->id();
-            $table->string('services');
-            $table->string('materials');
+            $table->foreignId('role_id')->constrained();
+            $table->foreignId('employee_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateReceiptCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receipt_categories');
+        Schema::dropIfExists('role__employees');
     }
 }

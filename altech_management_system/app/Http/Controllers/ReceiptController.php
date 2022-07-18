@@ -14,7 +14,11 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        //
+        $receipt =  Receipt::all();
+        return response()->json([
+            'status' =>  200,
+            'intern' => $receipt
+        ]);
     }
 
     /**
@@ -35,7 +39,19 @@ class ReceiptController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $receipt = new  Receipt;
+        $receipt->receipt_number= $request->input('receipt_number');
+        $receipt->quantity= $request->input('quantity');
+        $receipt->final_price= $request->input('final_price');
+        $receipt->enterprise_name= $request->input('enterprise_name');
+        $receipt->date_on_receipt= $request->input('date_on_receipt');
+        $receipt->item_bought= $request->input('item_bought');
+        $receipt->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'receipt added sucessfully'
+        ]);
     }
 
     /**
@@ -55,9 +71,13 @@ class ReceiptController extends Controller
      * @param  \App\Models\Receipt  $receipt
      * @return \Illuminate\Http\Response
      */
-    public function edit(Receipt $receipt)
+    public function edit(Receipt $receipt,$id)
     {
-        //
+        $receipt =  Receipt::find($id);
+        return response()->json([
+            'status' => 200,
+            'role' => $receipt,
+        ]);
     }
 
     /**
@@ -67,11 +87,33 @@ class ReceiptController extends Controller
      * @param  \App\Models\Receipt  $receipt
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receipt $receipt)
+    public function update(Request $request, Receipt $receipt,$id)
     {
-        //
+        $receipt =  Receipt::find($id);
+        $receipt->receipt_number= $request->input('receipt_number');
+        $receipt->quantity= $request->input('quantity');
+        $receipt->final_price= $request->input('final_price');
+        $receipt->enterprise_name= $request->input('enterprise_name');
+        $receipt->date_on_receipt= $request->input('date_on_receipt');
+        $receipt->item_bought= $request->input('item_bought');
+        $receipt->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'receipt updated sucessfully'
+        ]);
     }
 
+    public function delete(Request $request,$id)
+    {
+        Receipt::destroy($id);
+        return response()->json([
+            'status' =>  200,
+            'message' => "receipt deleted sucessfully"
+        ]);
+
+ 
+    }
     /**
      * Remove the specified resource from storage.
      *
