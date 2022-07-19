@@ -12,4 +12,8 @@ class ReceiptCategory extends Model
     protected $fillable = [
      'services'.
     'materials'];
+
+    public function receipts() {
+        return $this->hasMany(Receipt::class,'category_id','id')
+    }
 }

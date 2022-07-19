@@ -20,7 +20,8 @@ class Intern extends Model
         'address',
         'start_date',
         'end_date',
-        'supervisor_name','supervisor_id'
+        'supervisor_name',
+        'supervisor_id'
     ];
 
     protected $with = ['employee'];

@@ -15,5 +15,7 @@ class Receipt extends Model
     'final_price',
     'enterprie_name',
     'date_on_receipt',
-'item_bought' ];
+'item_bought' ,
+'category_id'
+];
 }

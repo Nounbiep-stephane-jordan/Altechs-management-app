@@ -46,6 +46,7 @@ class ReceiptController extends Controller
         $receipt->enterprise_name= $request->input('enterprise_name');
         $receipt->date_on_receipt= $request->input('date_on_receipt');
         $receipt->item_bought= $request->input('item_bought');
+        $receipt->category_id= $request->input('category_id');
         $receipt->save();
 
         return response()->json([
@@ -96,6 +97,8 @@ class ReceiptController extends Controller
         $receipt->enterprise_name= $request->input('enterprise_name');
         $receipt->date_on_receipt= $request->input('date_on_receipt');
         $receipt->item_bought= $request->input('item_bought');
+        $receipt->category_id= $request->input('category_id');
+
         $receipt->save();
 
         return response()->json([
