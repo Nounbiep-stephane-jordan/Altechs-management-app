@@ -1,0 +1,85 @@
+.form{
+    background-color: #fff;
+    z-index: 2;
+    position: relative;
+    margin: 5rem 5rem 5rem 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+    border-radius: 2px;
+    box-shadow: 0 0 20px #fff;
+
+    .input-row-last{
+        display:flex;
+
+    }
+
+    .sucess{
+        box-shadow: 0 0 10px 0px green;
+        background-color: rgb(82, 206, 82);
+        color: white;
+        padding: 10px;
+        border-radius: 3px;
+        text-align: center;
+        transition: all linear;
+
+    }
+
+    .error{
+        box-shadow: 0 0 10px 0px red;
+        background-color: rgb(245, 73, 73);
+        color: white;
+        padding: 10px;
+        border-radius: 3px;
+        text-align: center;
+        transition: all linear;
+
+    }
+
+    h1{
+        font-weight: 500;
+        font-size: 1.5rem;
+        text-transform: capitalize;
+    }
+
+    .input-box{
+        margin: 20px 0;
+        padding: 0 20px;
+        position: relative;
+
+        .form-icon{
+            margin: 0 10px 10px 20px;
+            border-right: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            position: absolute;
+            left: 5px;
+        }
+
+        input{
+            padding: 10px 10px 10px 50px;
+            border-radius: 5px;
+            width: 80%;
+            border: 1px solid #ddd;
+
+            &:focus{
+                border: 1px solid gray;
+            }
+        }
+    }
+
+    .submit{
+        padding: 10px 25px;
+        color: white;
+        background-color: rgb(112, 230, 112);
+        border: 1px solid green;
+        cursor: pointer;
+        transition: all linear;
+
+        &:hover{
+            box-shadow: 2px 0px 10px green;
+        }
+
+    }
+}
