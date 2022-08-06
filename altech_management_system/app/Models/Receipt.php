@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Receipt extends Model
 {
     use HasFactory;
-    protected $table = 'receips';
+    protected $table = 'receipts';
     protected $fillable = [
     'receipt_number',
     'quantity',
@@ -18,4 +18,10 @@ class Receipt extends Model
 'item_bought' ,
 'category_id'
 ];
+
+protected $with = ['receipt_cat'];
+public function receipt_cat(){
+    return $this->belongsTo(ReceiptCategory::class,'id','id');
+}
+
 }

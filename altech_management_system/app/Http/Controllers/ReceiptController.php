@@ -17,7 +17,7 @@ class ReceiptController extends Controller
         $receipt =  Receipt::all();
         return response()->json([
             'status' =>  200,
-            'intern' => $receipt
+            'receipt' => $receipt
         ]);
     }
 

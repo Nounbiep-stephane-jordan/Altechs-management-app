@@ -72,7 +72,7 @@ Route::delete('/employee_delete/{id}',[EmployeeController::class,'delete']);  //
 
 //for role
 Route::get('/role', [RoleController::class,'index']);  //get all
-Route::post('/role_add', [RoleController::class,'store']);  //store
+Route::post('/role_store', [RoleController::class,'store']);  //store
 Route::get('/role_edit/{id}', [RoleController::class,'edit']); //get edit
 Route::put('/role_update/{id}', [RoleController::class,'update']); //update
 Route::delete('/role_delete/{id}',[RoleController::class,'delete']);  //delete
@@ -85,6 +85,7 @@ Route::put('/receipt_update/{id}', [ReceiptController::class,'update']); //updat
 Route::delete('/receipt_delete/{id}',[ReceiptController::class,'delete']);  //delete
 
 //for receipt cat
+Route::get('/receipt_category', [ReceiptCategoryController::class,'index']);  //store
 Route::post('/receipt_category_add', [ReceiptCategoryController::class,'store']);  //store
 Route::get('/receipt_category_edit/{id}', [ReceiptCategoryController::class,'edit']); //get edit
 Route::delete('/receipt_category_delete/{id}',[ReceiptCategoryController::class,'delete']);  //delete

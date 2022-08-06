@@ -24,9 +24,9 @@ class Intern extends Model
         'supervisor_id'
     ];
 
-    protected $with = ['employee'];
+    // protected $with = ['employee'];
     
-    public function employee(){
-        return $this->belongsTo(Employee::class);
-    }
+    // public function employee(){
+    //     return $this->belongsTo(Employee::class);
+    // }
 }

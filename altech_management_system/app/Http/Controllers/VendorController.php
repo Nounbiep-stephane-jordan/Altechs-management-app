@@ -104,15 +104,13 @@ class VendorController extends Controller
         $vendor->email= $request->input('email');
         $vendor->website= $request->input('website');
         $vendor->category_id= $request->input('category_id');
-        $client->category_name= $request->input('category_name');
+        $vendor->category_name= $request->input('category_name');
  
         $vendor->update();
 
         return response()->json([
             'status' => 200,
-            'message' => 'vendor updated sucessfully',
-            'vendor' => $vendor
-
+            'message' => 'vendor updated sucessfully'
         ]);
     }
 

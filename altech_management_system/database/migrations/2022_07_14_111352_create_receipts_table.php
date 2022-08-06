@@ -19,8 +19,8 @@ class CreateReceiptsTable extends Migration
             $table->string('quantity');
             $table->string('final_price');
             $table->string('enterprise_name');
-            $table->date('date_on_receipt');
-            $table->date('item_bought'); 
+            $table->string('date_on_receipt');
+            $table->string('item_bought'); 
             $table->foreignId('category_id')->constrained('receipt_categories')->onDelete('cascade')->onUpdate('cascade'); 
             $table->timestamps();
         });

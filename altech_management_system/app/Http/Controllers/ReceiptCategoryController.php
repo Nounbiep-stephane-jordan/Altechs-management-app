@@ -14,7 +14,11 @@ class ReceiptCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $receipt_cat =  ReceiptCategory::all();
+        return response()->json([
+            'status' =>  200,
+            'receipt_cat' => $receipt_cat
+        ]);
     }
 
     /**

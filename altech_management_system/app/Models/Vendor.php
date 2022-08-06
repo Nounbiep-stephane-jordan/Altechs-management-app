@@ -18,9 +18,9 @@ class Vendor extends Model
         'website',
         'category_id'
     ];
-    protected $with = ['vendorcategories'];
+    // protected $with = ['vendorcategories'];
 
-    public function vendorcategories() {
-        return $this->belongsTo(VendorCategory::class,'category_id','id');
-    }
+    // public function vendorcategories() {
+    //     return $this->belongsTo(VendorCategory::class);
+    // }
 }
