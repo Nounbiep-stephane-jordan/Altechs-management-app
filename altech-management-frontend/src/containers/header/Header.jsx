@@ -6,13 +6,14 @@ import {BsDot} from "react-icons/bs"
 import {motion} from "framer-motion"
 import logo from "../../assets/Logo - single.png"
  
-import "./Header.scss"
+// import "./Header.scss"
+import "./head.scss"
 const Header = () => {
   return (
     <motion.div 
     initial={{opacity:0}}
     animate={{opacity:1}}
-    transition={{duration:1,delay:2.2}}
+    transition={{duration:1,delay:2.5}}
     className="header">
       <div className="bar">
          <div className="img">

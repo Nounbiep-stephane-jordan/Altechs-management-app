@@ -10,7 +10,7 @@ import "./Form.scss"
 
 
  
-const Form = ({title,setMessage,type}) => {
+const Form = ({title,setMessage,type,route}) => {
  
    const navigate = useNavigate()
    const [loading,setloading] = useState(false)
@@ -45,12 +45,13 @@ const Form = ({title,setMessage,type}) => {
     axios.post(`http://localhost:8000/api/${type}`,data)
     .then(response => (
         setMessage(response.data.message),
-        navigate("/client")
+        navigate(`/${route}`)
     ))
     .catch(err => {
 
         console.log(err)
         setloading(false)
+        console.log(err)
         setError("please the selected feilds cannot be blank")
  })
  }
@@ -64,18 +65,21 @@ const Form = ({title,setMessage,type}) => {
 
  
   return (
-    <motion.div 
-    initial={{opacity:0,scale:0}}
-    animate={{opacity:1,scale:[0,1]}}
-    transition={{duration:1}}
-    className="form">
-      {loading?
+     <>
+     
+     {loading?
       <>
-      <Loader/>
+       <div className="table">
+       <Loader/>
+       </div>
       </>
        :
        <>
-        
+       <motion.div 
+       initial={{opacity:0,scale:0}}
+       animate={{opacity:1,scale:[0,1]}}
+       transition={{duration:1}}
+       className="form">
         <div className={error?"pop-up error":"pop-up"}>{error}</div>
         <form onSubmit={handleSubmit}  >
             <h1>{title}</h1>
@@ -107,7 +111,7 @@ const Form = ({title,setMessage,type}) => {
         </div>
 
         <div className="input-row-last">
-        <div className="input-box">
+        <div className="input-box input-last">
              <input type="text" placeholder="category name" name="category_name" onChange={handleChange}/>
              </div>
 
@@ -118,11 +122,11 @@ const Form = ({title,setMessage,type}) => {
 
         <button  type="submit" className="btn submit"  >add</button>
         </form>
-       </>
+        </motion.div>
+        </>
        }
-
-        
-    </motion.div>
+     
+     </>
   )
 }
 

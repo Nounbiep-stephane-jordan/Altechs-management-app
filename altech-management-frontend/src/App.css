@@ -47,11 +47,12 @@ text-transform: uppercase;
 }
 
 body{
-  background-color: rgba(235, 231, 231,0.70);
+  /* background-color: rgba(235, 231, 231,0.70); */
+  background-color: #f8f9fa !important;
 }
 
 .btn{
-  padding: 10px;
+  padding: 8px;
   border: none;
   display: flex;
   align-items: center;

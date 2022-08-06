@@ -2,6 +2,7 @@ import React,{useContext, useEffect,useState} from 'react'
 import { notificationContext } from '../../../App'
 import {BsPlus} from "react-icons/bs"
 import {BiRightArrow} from "react-icons/bi"
+import "./employee.css"
 import {AiFillCaretDown} from "react-icons/ai"
 import {motion} from "framer-motion"
 import { NavLink } from 'react-router-dom'
@@ -10,7 +11,7 @@ import Loader from '../../../component/loader/loader'
 import SearchBox from '../../../component/search/searchBox'
 import {FaPen,FaTrash} from "react-icons/fa"
 import { Link } from 'react-router-dom'
-const Employee = (setnewMessage) => {
+const Employee = ({setnewMessage}) => {
     
    let newmessage = useContext(notificationContext)
 
@@ -100,27 +101,31 @@ const changeFilter = (type) =>{
  }
 
   return (
-    <motion.div 
-    initial={{opacity:0,scale:0}}
-    animate={{opacity:1,scale:[0,1]}}
-    transition={{duration:1}}
-    className="table"> 
-       {loading?
+   
+    <>
+        {loading?
       <>
-      <Loader/>
+       <div className="table">
+       <Loader/>
+       </div>
       </>
        :
        <>
+       <motion.div 
+         whileInView={{y:[100,0],opacity:[0,1]}}
+         initial={{opacity:0}}
+         animate={{opacity:1}}
+         transition={{duration:1,ease:"easeInOut"}}
+       className="table"> 
         {message?<div className="alert">
          <div className="alert-content">
           <p>{message}</p>
          </div>
-       </div>  : ""}
-    
+       </div>  : ""}     
 
     <div className="table-heading-add">
       <h1>List of Employees</h1>
-       <NavLink exact="true" to="/add_employee" className="add"><button className="btn"><BsPlus/>Add an employee</button></NavLink>
+       <NavLink exact="true" to="/add_employee" className="add"><button className="btn"><BsPlus/></button></NavLink>
     </div>
 
     <div className="table-search">
@@ -161,7 +166,7 @@ const changeFilter = (type) =>{
          {filterdata.map((item,index) => ( 
            <>
             
-            <tr className="data" key={item.id+index} >
+            <tr className="data" id="main" key={item.id+index} >
                  <td  className="t-data"  >{item.name}</td>
                  <td  className="t-data"  >{item.address}</td>
                  <td  className="t-data"  >{item.tel}</td>
@@ -169,38 +174,43 @@ const changeFilter = (type) =>{
                  <td  className="t-data" >{item.age}</td>
                  <td  className="t-data" >{item.sex}</td>
                  <td  className="t-data" >{item.join_date}</td>
-                 {/* <td className="t-data t-icon" ><Link to={`/update_employee/${item.id}`} ><FaPen className="blue"/></Link></td>
-                 <td className="t-data t-icon" onClick={() => handleClick('del',item.id)} ><FaTrash className="red"/></td> */}
             </tr>
-            <tr className="hover-table">{item.intern.map((intern) => (
-                  <table  >
-                  <tbody>
-                  <tr className="headings  ">
-                       {  ["name","address","tel","theme","age","sex","start date","end date","supervisor"].map((item,index) => ( 
-                         <th key={item} className="t-heading">{item}</th>
-                       ))}
-                       </tr>
-                      
-                         <>
-                          <tr className="data" key={intern.id+index} >
-                               <td  className="t-data"  >{intern.name}</td>
-                               <td  className="t-data"  >{intern.address}</td>
-                               <td  className="t-data"  >{intern.tel}</td>
-                               <td  className="t-data"  >{intern.theme}</td>
-                               <td  className="t-data" >{intern.age}</td>
-                               <td  className="t-data" >{intern.sex}</td>
-                               <td  className="t-data" >{intern.start_date}</td>
-                               <td  className="t-data" >{intern.end_date}</td>
-                               <td  className="t-data" >{intern.supervisor_name}</td>
-                                </tr>
-                         </>
-                        
-                 
-                       
-                       
-                  </tbody>
-                     </table>
-              ))}</tr>
+
+         <tr className="hover">
+
+              
+         {item.intern.map((item,index) => ( 
+           <>
+            <tr key={item.id+index} >
+            <td  className="t-data-icon t-data"  >Interns<BiRightArrow className="hover-icon" /></td>
+                 <td  className="t-data"  >{item.name}</td>
+                 <td  className="t-data"  >{item.address}</td>
+                 <td  className="t-data"  >{item.tel}</td>
+                 <td  className="t-data"  >{item.theme}</td>
+                 <td  className="t-data" >{item.age}</td>
+                 <td  className="t-data" >{item.sex}</td>
+                 <td  className="t-data" >{item.school}</td>
+                 <td  className="t-data" >{item.start_date}</td>
+                 <td  className="t-data" >{item.end_date}</td>
+                 <td  className="t-data" >{item.supervisor_name}</td>
+               </tr>
+           </>
+         ))}
+
+             {item.roles.map((item,index) => ( 
+           <>
+            <tr  key={item.id+index} >
+            <td  className="t-data-icon t-data"  >Roles<BiRightArrow className="hover-icon" /></td>
+                 <td  className="t-data"  >{item.name}</td>
+                 <td  className="t-data"  >{item.function}</td>
+                  <td className="t-data t-icon" ><Link to={`/update_role/${item.id}`} ><FaPen className="blue"/></Link></td>
+    
+            </tr>
+           </>
+         ))}
+         
+         </tr>
+             
            </>
          ))}
     
@@ -209,13 +219,14 @@ const changeFilter = (type) =>{
          
     </tbody>
        </table>
-    
+     </motion.div>
        </>
        }
       
  
+    </>
   
-    </motion.div>
+    
   )
 }
 

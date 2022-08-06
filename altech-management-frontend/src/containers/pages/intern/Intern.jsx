@@ -9,7 +9,7 @@ import Loader from '../../../component/loader/loader'
 import SearchBox from '../../../component/search/searchBox'
 import {FaPen,FaTrash} from "react-icons/fa"
 import { Link } from 'react-router-dom'
-const Intern = (setnewMessage) => {
+const Intern = ({setnewMessage}) => {
     
    let newmessage = useContext(notificationContext)
 
@@ -21,7 +21,7 @@ const Intern = (setnewMessage) => {
   const [message,setMessage] = useState("")
   const [loading,setloading] = useState(true)
 
-  const headings = ["name","address","tel","theme","age","sex","start date","end date","supervisor"]
+  const headings = ["name","address","tel","theme","age","sex","school","start date","end date","supervisor","town"]
 
   
  
@@ -99,17 +99,19 @@ const changeFilter = (type) =>{
  }
 
   return (
-    <motion.div 
-    initial={{opacity:0,scale:0}}
-    animate={{opacity:1,scale:[0,1]}}
-    transition={{duration:1}}
-    className="table"> 
-       {loading?
+    <>
+      {loading?
       <>
-      <Loader/>
+       <div className="table"><Loader/></div>
       </>
        :
        <>
+       <motion.div 
+       whileInView={{y:[100,0],opacity:[0,1]}}
+       initial={{opacity:0}}
+       animate={{opacity:1}}
+       transition={{duration:1,ease:"easeInOut"}}
+       className="table"> 
         {message?<div className="alert">
          <div className="alert-content">
           <p>{message}</p>
@@ -119,7 +121,7 @@ const changeFilter = (type) =>{
 
     <div className="table-heading-add">
       <h1>List of Intern</h1>
-       <NavLink exact="true" to="/add_intern" className="add"><button className="btn"><BsPlus/>Add an Intern</button></NavLink>
+       <NavLink exact="true" to="/add_intern" className="add"><button className="btn"><BsPlus/></button></NavLink>
     </div>
 
     <div className="table-search">
@@ -166,9 +168,11 @@ const changeFilter = (type) =>{
                  <td  className="t-data"  >{item.theme}</td>
                  <td  className="t-data" >{item.age}</td>
                  <td  className="t-data" >{item.sex}</td>
+                 <td  className="t-data" >{item.school}</td>
                  <td  className="t-data" >{item.start_date}</td>
                  <td  className="t-data" >{item.end_date}</td>
                  <td  className="t-data" >{item.supervisor_name}</td>
+                 <td  className="t-data" >{item.town}</td>
                   <td className="t-data t-icon" ><Link to={`/update_intern/${item.id}`} ><FaPen className="blue"/></Link></td>
                  <td className="t-data t-icon" onClick={() => handleClick('del',item.id)} ><FaTrash className="red"/></td>
             </tr>
@@ -180,13 +184,13 @@ const changeFilter = (type) =>{
          
     </tbody>
        </table>
-    
+     </motion.div>
        </>
        }
       
  
-  
-    </motion.div>
+    </>
+    
   )
 }
 

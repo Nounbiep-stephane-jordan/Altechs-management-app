@@ -2,17 +2,63 @@
     background-color: #fff;
     z-index: 2;
     position: relative;
-    margin: 5rem 5rem 5rem 15rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    // margin: 5rem;
+    right: 118px;
+    top: 115px;
     padding: 25px;
-    border-radius: 2px;
-    box-shadow: 0 0 20px #fff;
+    // box-shadow: 0 0 20px rgb(255, 255, 255);ss
+    position: absolute;
+    // right: 50px;
+    // top: 20px;
+    z-index: 4 ;
+    border-radius: 1rem;
+    max-width: 100%;
+    width: 60%;
+
+    form{
+        width: 100%;
+        margin: 10px;
+        // display: flex;
+        // justify-content: center;
+        // flex-direction: column;
+        // align-items: center;
+ 
+
+
+
+.input-box{
+    margin: 20px 0;
+    position: relative;
+    .form-icon{
+        margin: 0 10px 10px 20px;
+        border-right: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        position: absolute;
+        left: -17px;
+    }
+
+    input{
+        padding: 10px 10px 10px 50px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        width: 88%;
+        &:focus{
+            border: 1px solid gray;
+        }
+    }
+}
+
+
+
+    }
 
     .input-row-last{
         display:flex;
 
+        .input-last{
+            margin-right: 50px;
+        }
     }
 
     .sucess{
@@ -23,7 +69,6 @@
         border-radius: 3px;
         text-align: center;
         transition: all linear;
-
     }
 
     .error{
@@ -41,45 +86,35 @@
         font-weight: 500;
         font-size: 1.5rem;
         text-transform: capitalize;
+        text-align: center;
     }
 
-    .input-box{
-        margin: 20px 0;
-        padding: 0 20px;
-        position: relative;
-
-        .form-icon{
-            margin: 0 10px 10px 20px;
-            border-right: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-            position: absolute;
-            left: 5px;
-        }
-
-        input{
-            padding: 10px 10px 10px 50px;
-            border-radius: 5px;
-            width: 80%;
-            border: 1px solid #ddd;
-
-            &:focus{
-                border: 1px solid gray;
-            }
-        }
-    }
-
+   
     .submit{
         padding: 10px 25px;
         color: white;
-        background-color: rgb(112, 230, 112);
-        border: 1px solid green;
+        background-color: #5e72e4;
+        box-shadow: 0 0 0px #5e72e4;
         cursor: pointer;
-        transition: all linear;
+        transition: all 0.5s ease-in-out;
+        border-radius: 5px;
+        
 
+      
         &:hover{
-            box-shadow: 2px 0px 10px green;
+            box-shadow: 0 0 10px #a4aee9;
+            transform: scale(1.1);
+             transform: translateY(-3px);
         }
 
     }
 }
+
+
+
+
+
+
+
+
+ 

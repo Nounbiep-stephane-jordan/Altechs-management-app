@@ -9,7 +9,7 @@ import Loader from '../../../component/loader/loader'
 import SearchBox from '../../../component/search/searchBox'
 import {FaPen,FaTrash} from "react-icons/fa"
 import { Link } from 'react-router-dom'
-const  Receipt= (setnewMessage) => {
+const  Receipt= ({setnewMessage}) => {
     
    let newmessage = useContext(notificationContext)
 
@@ -96,17 +96,19 @@ const changeFilter = (type) =>{
  }
 
   return (
-    <motion.div 
-    initial={{opacity:0,scale:0}}
-    animate={{opacity:1,scale:[0,1]}}
-    transition={{duration:1}}
-    className="table"> 
-       {loading?
       <>
-      <Loader/>
+            {loading?
+      <>
+       <div className="table"><Loader/></div>
       </>
        :
        <>
+       <motion.div 
+        whileInView={{y:[100,0],opacity:[0,1]}}
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:1,ease:"easeInOut"}}
+       className="table"> 
         {message?<div className="alert">
          <div className="alert-content">
           <p>{message}</p>
@@ -115,8 +117,8 @@ const changeFilter = (type) =>{
     
 
     <div className="table-heading-add">
-      <h1>List of Intern</h1>
-       <NavLink exact="true" to="/add_receipt" className="add"><button className="btn"><BsPlus/>Add a Receipt</button></NavLink>
+      <h1>List of Receipts</h1>
+       <NavLink exact="true" to="/add_receipt" className="add"><button className="btn"><BsPlus/> </button></NavLink>
     </div>
 
     <div className="table-search">
@@ -173,13 +175,10 @@ const changeFilter = (type) =>{
          
     </tbody>
        </table>
-    
+      </motion.div>
        </>
        }
-      
- 
-  
-    </motion.div>
+      </>
   )
 }
 

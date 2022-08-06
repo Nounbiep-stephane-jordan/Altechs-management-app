@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Table from '../../../../component/table/table'
 import axios from "axios"
-import "./cat.scss"
+import {motion} from "framer-motion" 
 import Loader from '../../../../component/loader/loader'
-import {motion} from "framer-motion"
 
-const Category = () => {
+const VendorCategory = () => {
     const [data,setData] = useState([])
    
     
@@ -19,7 +18,7 @@ const Category = () => {
     const handleClick = (type,id) =>{
         setloading(true)
         if(type ==='del') {
-          axios.delete(`http://localhost:8000/api/clients_delete/${id}`)
+          axios.delete(`http://localhost:8000/api/vendor_delete/${id}`)
           .then(function (response) {
             setloading(false)
             return setMessage(response.data.message)
@@ -32,11 +31,11 @@ const Category = () => {
 
 
     useEffect(() =>{
-        axios.get('http://localhost:8000/api/clients_category')
+        axios.get('http://localhost:8000/api/vendor_category')
         .then(function (response) {
-          setData(response.data.clients_cat)
+          setData(response.data.vendors_category)
           setloading(false)
-          console.log(response.data.clients_cat)
+          console.log(response.data.vendors_category,"here nigger")
         })
         .catch(function (error) {
           console.log(error);
@@ -45,24 +44,18 @@ const Category = () => {
 
     
       
-
+console.log(data,"hi")
   return (
  <>
   
- {loading?
- <>
- <div className="table">
- <Loader/>
- </div>
- </>
- : 
-  <>
-  <motion.div
-     whileInView={{y:[100,0],opacity:[0,1]}}
-     initial={{opacity:0}}
-     animate={{opacity:1}}
-     transition={{duration:1,ease:"easeInOut"}}
-  className="table category">
+ {loading? <div className="table">
+  <Loader/>
+ </div>: 
+ <motion.div 
+ whileInView={{y:[100,0],opacity:[0,1]}}
+ initial={{opacity:0}}
+ animate={{opacity:1}}
+ className="table category">
   <table>
 <tbody>
 <tr className="headings">
@@ -86,8 +79,8 @@ const Category = () => {
  
     <div className="hover bg-white
     ">
-      <tr><td className="cat-heading">Employees</td></tr>
-    <Table data={item.client} handleClick={handleClick} headings={heading} />
+      <tr><td className="cat-heading">Vendors</td></tr>
+    <Table data={item.vendor} handleClick={handleClick} headings={heading} />
     </div>
  
 </>
@@ -99,11 +92,10 @@ const Category = () => {
 </tbody>
 </table>
 </motion.div>
-  </>
  }
  
  </>
   )
 }
 
-export default Category
+export default VendorCategory

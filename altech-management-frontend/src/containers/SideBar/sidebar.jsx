@@ -3,27 +3,31 @@ import {BiMenuAltLeft} from "react-icons/bi"
 import {BsArrowReturnRight} from "react-icons/bs"
 import {motion} from "framer-motion"
 import {NavLink } from "react-router-dom";
-import './sidebar.scss'
+// import './sidebar.scss'
+ 
+
+import "./dashboard.scss"
  
 
 const Sidebar = () => {
 
    const [show,setshow] = useState(false)
    const [show2,setshow2] = useState(false)
+   const [show3,setshow3] = useState(false)
    
    
   return (
     <motion.div
-    initial={{opacity:0}}
-    animate={{opacity:1,x:[200,10,0]}}
+    initial={{opacity:0,backgroundColor:"#5e72e4"}}
+    animate={{opacity:1,y:[400,0],backgroundColor:"#fff"}}
     transition={{duration:1,delayChildren:1}}
     className='sidebar'>
          <motion.div
             initial={{opacity:0}}
-            animate={{opacity:1,x:[-100,100,0]}}
+            animate={{opacity:1,x:[-100,0]}}
             transition={{duration:1}} 
          className="link_box-icon">
-            <BiMenuAltLeft className='link-item link-icon'/>
+            <a href="/"> <BiMenuAltLeft className='link-item link-icon'/></a>
          </motion.div>
         
          <motion.div 
@@ -83,7 +87,18 @@ const Sidebar = () => {
             initial={{opacity:0}}
             animate={{opacity:1,x:[-100,100,0]}}
             transition={{duration:1,delay:1.8}}
-         className="link_box"><NavLink to="/receipt" className='link-item' exact="true" activeclassname="active">Receipt</NavLink></motion.div>
+         className="link_box"><NavLink to="/receipts" className='link-item' exact="true" activeclassname="active" onClick={() =>setshow3((prev) => !prev)}>Receipt</NavLink>
+              {show3?
+         <motion.div
+         initial={{opacity:0}}
+         animate={{opacity:1,x:[-30,20,0]}}
+         transition={{duration:0.9}}
+         >
+             <NavLink
+          to="/receipt_category" className='link-item-dropdown' exact="true" activeclassname="active-dropdown" ><BsArrowReturnRight/>category</NavLink>
+         </motion.div>:""  
+         }  
+         </motion.div>
     </motion.div>
   )
 }

@@ -9,7 +9,7 @@ import Loader from '../../../component/loader/loader'
 import SearchBox from '../../../component/search/searchBox'
 import {FaPen,FaTrash} from "react-icons/fa"
 import { Link } from 'react-router-dom'
-const Intern = (setnewMessage) => {
+const Role = ({setnewMessage}) => {
     
    let newmessage = useContext(notificationContext)
 
@@ -94,17 +94,19 @@ const changeFilter = (type) =>{
  }
 
   return (
-    <motion.div 
-    initial={{opacity:0,scale:0}}
-    animate={{opacity:1,scale:[0,1]}}
-    transition={{duration:1}}
-    className="table"> 
-       {loading?
+    
       <>
-      <Loader/>
+        {loading?
+      <>
+      <div className="table"><Loader/></div>
       </>
        :
        <>
+       <motion.div 
+      whileInView={{y:[100,0],opacity:[0,1]}}
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+       className="table"> 
         {message?<div className="alert">
          <div className="alert-content">
           <p>{message}</p>
@@ -113,8 +115,8 @@ const changeFilter = (type) =>{
     
 
     <div className="table-heading-add">
-      <h1>List of Intern</h1>
-       <NavLink exact="true" to="/add_role" className="add"><button className="btn"><BsPlus/>Add a Role</button></NavLink>
+      <h1>List of Role</h1>
+       <NavLink exact="true" to="/add_role" className="add"><button className="btn"><BsPlus/></button></NavLink>
     </div>
 
     <div className="table-search">
@@ -167,14 +169,15 @@ const changeFilter = (type) =>{
          
     </tbody>
        </table>
-    
+     </motion.div>
        </>
        }
+      </>
       
  
   
-    </motion.div>
+    
   )
 }
 
-export default Intern
+export default Role

@@ -4,7 +4,8 @@ import {AiFillCaretDown} from "react-icons/ai"
 import {motion} from "framer-motion"
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
-import './style.scss'
+// import './style.scss'
+import './mainStyle.scss'
 import Loader from '../../../component/loader/loader'
 import SearchBox from '../../../component/search/searchBox'
 import Table from '../../../component/table/table'
@@ -101,17 +102,20 @@ const changeFilter = (type) =>{
  
    
   return (
-    <motion.div 
-    initial={{opacity:0,scale:0}}
-    animate={{opacity:1,scale:[0,1]}}
-    transition={{duration:1}}
-    className="table"> 
-       {loading?
+    
+  <>
+        {loading?
       <>
-      <Loader/>
+       <div className="table"><Loader/></div>
       </>
        :
        <>
+       <motion.div
+       whileInView={{y:[100,0],opacity:[0,1]}}
+       initial={{opacity:0}}
+       animate={{opacity:1}}
+       transition={{duration:1,ease:"easeInOut"}}
+       className="table"> 
         {message?<div className="alert">
          <div className="alert-content">
           <p>{message}</p>
@@ -121,7 +125,7 @@ const changeFilter = (type) =>{
 
     <div className="table-heading-add">
       <h1>List of clients</h1>
-       <NavLink exact="true" to="/add" className="add"><button className="btn"><BsPlus/>Add a client</button></NavLink>
+       <NavLink exact="true" to="/add" className="add"><button className="btn"><BsPlus/></button></NavLink>
     </div>
 
     <div className="table-search">
@@ -151,14 +155,15 @@ const changeFilter = (type) =>{
 
     </div>
     
-    <Table data={filterdata} handleClick={handleClick} headings={headings}/>
-    
+    <Table data={filterdata} handleClick={handleClick} headings={headings} update="update_client"/>
+    </motion.div>
        </>
        }
       
+  </>
  
   
-    </motion.div>
+    
   )
 }
 

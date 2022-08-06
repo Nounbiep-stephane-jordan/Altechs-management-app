@@ -26,7 +26,7 @@ const Vendor = ({setnewMessage}) => {
     
    
     const handleClick = (type,id) =>{
-      console.log(message)
+    
       setloading(true)
       if(type ==='del') {
         axios.delete(`http://localhost:8000/api/vendor_delete/${id}`)
@@ -42,12 +42,9 @@ const Vendor = ({setnewMessage}) => {
   
   
     useEffect( () =>{
-      console.log("here")
-      axios.get('http://localhost:8000/api/vendor',{
-        headers:{
-          "Acess-Control-Allow-Origin":true
-        }
-      })
+     
+      console.log("here",newmessage,message)
+      axios.get('http://localhost:8000/api/vendor')
       .then(function (response) {
         setData(response.data.vendors)
         setloading(false)
@@ -56,7 +53,7 @@ const Vendor = ({setnewMessage}) => {
       .catch(function (error) {
         console.log(error);
       }) 
-    },[])
+    },[message, newmessage])
   
    
       if(message) {
@@ -104,17 +101,18 @@ const Vendor = ({setnewMessage}) => {
    }
   return (
     <>
-     <motion.div 
-    initial={{opacity:0,scale:0}}
-    animate={{opacity:1,scale:[0,1]}}
-    transition={{duration:1}}
-    className="table"> 
+    
        {loading?
       <>
-      <Loader/>
+      <div className="table"><Loader/></div>
       </>
        :
        <>
+         <motion.div 
+      whileInView={{y:[100,0],opacity:[0,1]}}
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+    className="table"> 
         {message?<div className="alert">
          <div className="alert-content">
           <p>{message}</p>
@@ -124,7 +122,7 @@ const Vendor = ({setnewMessage}) => {
 
     <div className="table-heading-add">
       <h1>List of Vendors</h1>
-       <NavLink exact="true" to="/add_vendor" className="add"><button className="btn"><BsPlus/>Add a vendor</button></NavLink>
+       <NavLink exact="true" to="/add_vendor" className="add"><button className="btn"><BsPlus/></button></NavLink>
     </div>
 
     <div className="table-search">
@@ -154,14 +152,14 @@ const Vendor = ({setnewMessage}) => {
 
     </div>
     
-    <Table data={filterdata} handleClick={handleClick} headings={headings}/>
-    
+    <Table data={filterdata} handleClick={handleClick} headings={headings} update="update_vendor"/>
+    </motion.div>
        </>
        }
       
  
   
-    </motion.div>
+    
     </>
   )
 }

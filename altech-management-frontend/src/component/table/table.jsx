@@ -2,7 +2,7 @@ import React from 'react'
 import {FaPen,FaTrash} from "react-icons/fa"
 import { Link } from 'react-router-dom'
 
-const Table = ({data,handleClick,headings}) => {
+const Table = ({data,handleClick,headings,update}) => {
   
   return (
     <table>
@@ -23,8 +23,8 @@ const Table = ({data,handleClick,headings}) => {
                  <td  className="t-data" key={item.id+index+item.website}>{item.website}</td>
                  <td  className="t-data" key={item.id+index+item.category_id}>{item.category_id}</td>
                  <td  className="t-data" key={item.id+index+item.category_name}>{item.category_name}</td>
-                 <td  className="t-data" key={item.id+index+"hey"}>{item.category_name}</td>
-                 <td className="t-data t-icon" key={item.id+index+"edit"}><Link to={`/update/${item.id}`} ><FaPen className="blue"/></Link></td>
+                 <td  className="t-data" key={item.id+index+"hey"}>{item.created_at}</td>
+                 <td className="t-data t-icon" key={item.id+index+"edit"}><Link to={`/${update}/${item.id}`} ><FaPen className="blue"/></Link></td>
                  <td className="t-data t-icon" onClick={() => handleClick('del',item.id)} key={item.id+index+"now"}><FaTrash className="red"/></td>
             </tr>
            </>
