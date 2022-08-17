@@ -1,0 +1,42 @@
+.wrapp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    flex-direction: column;
+    z-index: 99;
+    bottom: 0;
+    left: 60px;
+
+  
+
+    .icons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .icon{
+            background-color: rgb(243, 239, 239);
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover{
+                     background-color: #5e72e4;
+                svg{
+                    color: white;
+                }
+            }
+
+            svg{
+                font-size: 13px;
+            }
+        }
+    }
+}
