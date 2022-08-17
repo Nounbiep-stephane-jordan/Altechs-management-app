@@ -12,6 +12,7 @@ use App\http\controllers\RoleController;
 use App\http\controllers\ReceiptController;
 use App\http\controllers\ReceiptCategoryController;
 use App\http\controllers\EmployeeRoleController;
+use App\http\controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post("/auth/register",[AuthController::class,"createUser"]);
+Route::post("/auth/login",[AuthController::class,"verifyUser"]);
+
 //for clients
-Route::get('/clients', [ClientController::class,'index']);  //get all
+Route::get('/clients', [ClientController::class,'index'])->middleware('auth:sanctum');  //get all
 Route::post('/clients_store', [ClientController::class,'store']);  //store
 Route::get('/clients_edit/{id}', [ClientController::class,'edit']); //get edit
 Route::put('/clients_update/{id}', [ClientController::class,'update']); //update
