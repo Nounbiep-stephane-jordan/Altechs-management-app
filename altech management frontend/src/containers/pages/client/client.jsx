@@ -14,7 +14,8 @@ import { notificationContext } from '../../../App'
 
 const Client  = ({setnewMessage} ) => {
 
-   let newmessage = useContext(notificationContext)
+   let {message:newmessage,token} = useContext(notificationContext)
+    
 
   const [data,setData] = useState([])
 
@@ -31,6 +32,7 @@ const Client  = ({setnewMessage} ) => {
  
   const handleClick = (type,id) =>{
     console.log(message)
+    
     setloading(true)
     if(type ==='del') {
       axios.delete(`http://localhost:8000/api/clients_delete/${id}`)
@@ -115,7 +117,6 @@ const changeFilter = (type) =>{
        :
        <>
        <motion.div
-      //  whileInView={{y:[100,0],opacity:[0,1]}}
        initial={{opacity:0}}
        animate={{opacity:1}}
        transition={{duration:1,ease:"easeInOut"}}
@@ -129,7 +130,7 @@ const changeFilter = (type) =>{
 
     <div className="table-heading-add">
       <h1>List of clients</h1>
-       <NavLink exact="true" to="/add" className="add"><button className="btn"><BsPlus/></button></NavLink>
+        {token?<NavLink exact="true" to="/add" className="add"><button className="btn"><BsPlus/></button></NavLink>:""}
     </div>
 
     <div className="table-search">

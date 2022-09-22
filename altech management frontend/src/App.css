@@ -47,8 +47,9 @@ text-transform: uppercase;
 }
 
 body{
-  /* background-color: rgba(235, 231, 231,0.70); */
-  background-color: #f8f9fa !important;
+  background-color: #6382d994;
+  
+  /* background-color: #f8f9fa !important; */
 }
 
 .btn{

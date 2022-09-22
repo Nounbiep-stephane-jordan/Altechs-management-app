@@ -19,7 +19,7 @@ const Header = () => {
       <div className="bar">
          <div className="img">
           <img src={logo} alt="logo"/>  
-          <NavLink to="/" >  <h1 className="p-head">Altech</h1></NavLink>
+          <NavLink to="/home" >  <h1 className="p-head">Altech</h1></NavLink>
          </div>
  
      <div className="all-icons">
@@ -30,7 +30,7 @@ const Header = () => {
       <BsFillBellFill className="head-icon"/>
     </div>
     <div className="head-icon-box">
-      <BsFillPersonFill className="head-icon"/>
+       <NavLink to="/"><BsFillPersonFill className="head-icon"/></NavLink>
     </div>
     <div className="head-icon-box">
       <BsThreeDotsVertical className="head-icon"/>

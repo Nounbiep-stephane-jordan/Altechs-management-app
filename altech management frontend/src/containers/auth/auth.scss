@@ -1,0 +1,101 @@
+.home-form{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 9999;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        background-image: url("../../assets/Logo.png");
+
+
+        .alert{
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            transition: all ease;
+    
+            position: fixed;
+            z-index: 19; 
+              bottom:0;
+            right:0;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            transition: all 1.5s;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+            .alert-content{
+                background-color: white;
+                text-align: center;
+                height: 100px;
+                width: 500px;
+               transition: all 1.5s;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               box-shadow: 0px 0px 4px 4px rgb(193 200 209);
+               
+    
+                p{
+                    color: black;
+                    font-size: 1rem;
+                    font-weight: bold;
+                }
+            }
+        }
+    
+
+    form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .submit-btn{
+            background-color: rgb(94, 94, 250);
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        input{
+            border: none;
+            outline: none;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+
+            &:focus{
+                outline: 1px solid rgb(34, 34, 238);
+            }
+        }
+
+
+    }
+
+    
+    .guest-btn{
+        background-color: rgb(94, 94, 250);
+        border-radius: 5px;
+        margin-top: 10px;
+        color: white;
+        padding: 10px 20px;
+    }
+
+ 
+}

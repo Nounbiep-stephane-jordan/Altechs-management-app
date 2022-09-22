@@ -25,14 +25,16 @@ import VendorEdit from "./containers/pages/vendor/form/vendorEdit";
 import VendorCategory from "./containers/pages/vendor/category/vendorCategory";
 import ReceiptCategory from "./containers/pages/receipt/category/receiptCategory";
 import Home from "./containers/home/home";
+import Auth from "./containers/auth/auth";
 
 export const notificationContext = createContext("");
 function App() {
   const [message, setMessage] = useState("");
+  const [token, setToken] = useState("");
 
   return (
     <>
-      <notificationContext.Provider value={message}>
+      <notificationContext.Provider value={{ message, token }}>
         <BrowserRouter>
           <Header />
           <Sidebar />
@@ -40,6 +42,10 @@ function App() {
           <Routes>
             <Route
               path="/"
+              element={<Auth setToken={setToken} setnewMessage={setMessage} />}
+            ></Route>
+            <Route
+              path="/home"
               element={<Home setnewMessage={setMessage} />}
             ></Route>
             <Route

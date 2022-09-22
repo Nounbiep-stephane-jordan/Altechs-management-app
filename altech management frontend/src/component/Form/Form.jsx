@@ -7,11 +7,10 @@ import {BsPerson,BsTelephone,BsGlobe} from "react-icons/bs"
 import {FiMail} from "react-icons/fi"
 import {GoLocation} from "react-icons/go"
 import "./Form.scss"
-
-
+ 
  
 const Form = ({title,setMessage,type,route}) => {
- 
+    
    const navigate = useNavigate()
    const [loading,setloading] = useState(false)
   const [data,setData] = useState({
@@ -41,7 +40,7 @@ const Form = ({title,setMessage,type,route}) => {
  const handleSubmit = (e) =>{
     e.preventDefault()
     setloading(true)
-
+  
     axios.post(`http://localhost:8000/api/${type}`,data)
     .then(response => (
         setMessage(response.data.message),

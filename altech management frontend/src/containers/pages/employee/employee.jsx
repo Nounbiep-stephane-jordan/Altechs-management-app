@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
  
 const Employee = ({setnewMessage}) => {
     
-   let newmessage = useContext(notificationContext)
+  let {message:newmessage,token} = useContext(notificationContext)
 
   const [data,setData] = useState([])
 
@@ -128,8 +128,8 @@ const changeFilter = (type) =>{
 
     <div className="table-heading-add">
       <h1>List of Employees</h1>
-       <NavLink exact="true" to="/add_employee" className="add"><button className="btn"><BsPlus/></button></NavLink>
-    </div>
+      {token?<NavLink exact="true" to="/add_employee" className="add"><button className="btn"><BsPlus/></button></NavLink>:""}
+     </div>
 
     <div className="table-search">
 

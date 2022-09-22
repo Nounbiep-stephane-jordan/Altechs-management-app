@@ -11,7 +11,7 @@ import Table from '../../../component/table/table'
 
 const Vendor = ({setnewMessage}) => {
 
-    let newmessage = useContext(notificationContext)
+  let {message:newmessage,token}  = useContext(notificationContext)
 
     const [data,setData] = useState([])
   
@@ -124,7 +124,7 @@ const Vendor = ({setnewMessage}) => {
 
     <div className="table-heading-add">
       <h1>List of Vendors</h1>
-       <NavLink exact="true" to="/add_vendor" className="add"><button className="btn"><BsPlus/></button></NavLink>
+       {token? <NavLink exact="true" to="/add_vendor" className="add"><button className="btn"><BsPlus/></button></NavLink>:""}
     </div>
 
     <div className="table-search">

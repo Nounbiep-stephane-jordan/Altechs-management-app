@@ -11,7 +11,7 @@ import {FaPen,FaTrash} from "react-icons/fa"
 import { Link } from 'react-router-dom'
 const Role = ({setnewMessage}) => {
     
-   let newmessage = useContext(notificationContext)
+  let {message:newmessage,token} = useContext(notificationContext)
 
   const [data,setData] = useState([])
 
@@ -118,7 +118,7 @@ const changeFilter = (type) =>{
 
     <div className="table-heading-add">
       <h1>List of Role</h1>
-       <NavLink exact="true" to="/add_role" className="add"><button className="btn"><BsPlus/></button></NavLink>
+    {token? <NavLink exact="true" to="/add_role" className="add"><button className="btn"><BsPlus/></button></NavLink>:""}
     </div>
 
     <div className="table-search">

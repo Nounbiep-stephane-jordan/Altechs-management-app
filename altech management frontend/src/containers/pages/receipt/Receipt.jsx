@@ -11,7 +11,7 @@ import {FaPen,FaTrash} from "react-icons/fa"
 import { Link } from 'react-router-dom'
 const  Receipt= ({setnewMessage}) => {
     
-   let newmessage = useContext(notificationContext)
+   let {message:newmessage,token}  = useContext(notificationContext)
 
   const [data,setData] = useState([])
 
@@ -97,6 +97,12 @@ const changeFilter = (type) =>{
   setTime(2000)
  }
 
+
+ const totalAmount = filterdata.map(item => {
+  let total = 0
+  return total+=  Number(item.final_price)
+ })
+
   return (
       <>
             {loading?
@@ -120,7 +126,7 @@ const changeFilter = (type) =>{
 
     <div className="table-heading-add">
       <h1>List of Receipts</h1>
-       <NavLink exact="true" to="/add_receipt" className="add"><button className="btn"><BsPlus/> </button></NavLink>
+      {token?<NavLink exact="true" to="/add_receipt" className="add"><button className="btn"><BsPlus/></button></NavLink>:""}
     </div>
 
     <div className="table-search">
@@ -177,6 +183,11 @@ const changeFilter = (type) =>{
          
     </tbody>
        </table>
+
+       <div>
+        <h1>Bilan</h1>
+        <p>{totalAmount}</p>
+       </div>
       </motion.div>
        </>
        }
